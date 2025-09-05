@@ -14,8 +14,9 @@
     "generate-themes": "node src/scripts/run-tsx-with-env.js src/scripts/generate-bible-themes.ts"
   },
   "dependencies": {
-    "@repo/types": "*",
-    "@repo/config": "*",
+    "@repo/types": "workspace:*",
+    "@repo/config": "workspace:*",
+    "@repo/payments": "workspace:*",
     "@ai-sdk/anthropic": "^2.0.9",
     "@ai-sdk/google": "^2.0.11",
     "@ai-sdk/openai": "^2.0.23",

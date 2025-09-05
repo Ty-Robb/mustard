@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { adminAuth } from '@/lib/firebase-admin';
-import { PaymentService } from '@/lib/services/payment.service';
+import { createCheckoutSession, type CoursePrice } from '@repo/payments/server';
+import { getDatabase } from '@/lib/mongodb';
+import { ObjectId } from 'mongodb';
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,12 +39,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if user already has access to any of these courses
-    const accessChecks = await Promise.all(
-      courseIds.map(courseId => PaymentService.hasAccess(userId, courseId))
-    );
+    // Get database connection
+    const db = await getDatabase();
     
-    const alreadyOwned = courseIds.filter((_, index) => accessChecks[index]);
+    // Check if user already has access to any of these courses
+    const user = await db.collection('users').findOne({ _id: new ObjectId(userId) });
+    const enrolledCourses = user?.enrolledCourses || [];
+    
+    const alreadyOwned = courseIds.filter(courseId => enrolledCourses.includes(courseId));
     if (alreadyOwned.length > 0) {
       return NextResponse.json(
         { 
@@ -54,20 +58,70 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get course prices
+    const coursePrices = await db.collection<CoursePrice>('course_prices')
+      .find({ courseId: { $in: courseIds } })
+      .toArray();
+
+    if (coursePrices.length !== courseIds.length) {
+      return NextResponse.json(
+        { 
+          error: 'Course not found',
+          message: 'One or more courses are not available for purchase'
+        },
+        { status: 404 }
+      );
+    }
+
+    // Get course details
+    const courses = await db.collection('courses')
+      .find({ _id: { $in: courseIds.map(id => new ObjectId(id)) } })
+      .toArray();
+
+    // Get user email
+    const userEmail = user?.email;
+
     // Create success and cancel URLs
     const origin = request.headers.get('origin') || process.env.NEXT_PUBLIC_APP_URL;
     const successUrl = `${origin}/courses/purchase-success?session_id={CHECKOUT_SESSION_ID}`;
     const cancelUrl = `${origin}/courses/${courseIds[0]}?canceled=true`;
 
-    // Create Stripe checkout session
+    // Create Stripe checkout session using the new package
     try {
-      const session = await PaymentService.createCheckoutSession(
+      const session = await createCheckoutSession({
         userId,
         courseIds,
         successUrl,
         cancelUrl,
-        discountCode
-      );
+        discountCode,
+        userEmail,
+        coursePrices,
+        courses: courses.map(c => ({
+          _id: c._id.toString(),
+          title: c.title,
+          description: c.description
+        }))
+      });
+
+      // Save checkout session to database
+      await db.collection('checkout_sessions').insertOne({
+        id: new ObjectId().toString(),
+        userId,
+        items: coursePrices.map(cp => ({
+          type: 'course',
+          id: cp.courseId,
+          name: courses.find(c => c._id.toString() === cp.courseId)?.title || 'Course',
+          price: cp.basePrice,
+          quantity: 1,
+        })),
+        subtotal: coursePrices.reduce((sum, cp) => sum + cp.basePrice, 0),
+        total: coursePrices.reduce((sum, cp) => sum + cp.basePrice, 0),
+        currency: coursePrices[0].currency,
+        stripeSessionId: session.sessionId,
+        status: 'pending',
+        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
+        createdAt: new Date(),
+      });
 
       return NextResponse.json({
         sessionId: session.sessionId,
@@ -133,7 +187,6 @@ export async function GET(request: NextRequest) {
     }
 
     // Get session from database
-    const { getDatabase } = await import('@/lib/mongodb');
     const db = await getDatabase();
     
     const checkoutSession = await db.collection('checkout_sessions').findOne({
