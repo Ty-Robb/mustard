@@ -9,7 +9,7 @@ This document outlines the migration of the Mustard project from a single Next.j
 ```
 mustard/
 ├── apps/
-│   └── web/              # Main Next.js application
+│   └── app/              # Main Next.js application
 ├── packages/
 │   ├── ui/               # Shared UI components (to be extracted)
 │   ├── database/         # MongoDB utilities (to be extracted)
@@ -37,9 +37,9 @@ mustard/
    - Created index.ts to export all types
    - Added as dependency to web app
 
-4. ✅ **Web App Migration**
-   - Copied entire application to apps/web
-   - Updated package.json name to @repo/web
+4. ✅ **App Migration**
+   - Copied entire application to apps/app
+   - Updated package.json name to @repo/app
    - Updated tsconfig.json to extend from @repo/config
    - Added workspace dependencies
 
@@ -47,13 +47,13 @@ mustard/
 
 ### 1. Extract UI Components Package (@repo/ui)
 ```bash
-# Move components from apps/web/src/components to packages/ui/src
+# Move components from apps/app/src/components to packages/ui/src
 # Update imports throughout the application
 ```
 
 ### 2. Extract Database Package (@repo/database)
 ```bash
-# Move database utilities from apps/web/src/lib/services
+# Move database utilities from apps/app/src/lib/services
 # Move MongoDB connection logic
 # Update imports
 ```
@@ -89,11 +89,11 @@ npm run dev
 ```bash
 # Development
 npm run dev              # Start all apps in dev mode
-npm run dev --filter=web # Start only web app
+npm run dev --filter=app # Start only the main app
 
 # Building
 npm run build           # Build all apps and packages
-npm run build --filter=web # Build only web app
+npm run build --filter=app # Build only the main app
 
 # Linting
 npm run lint            # Lint all packages
