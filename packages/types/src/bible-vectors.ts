@@ -31,7 +31,7 @@ export interface BibleVector {
   searchableText?: string; // Combined text for fallback search
 }
 
-export interface BibleSearchResult extends BibleVector {
+export interface BibleVectorSearchResult extends BibleVector {
   score: number;
 }
 
