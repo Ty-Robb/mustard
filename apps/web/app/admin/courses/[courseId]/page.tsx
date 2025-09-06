@@ -29,7 +29,7 @@ import {
   Link
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { LMSCourse, LMSModule, LMSStep } from '@/types/lms';
+import type { LMSCourse, LMSModule, LMSStep } from '@repo/types';
 
 // Step type icons
 const stepTypeIcons = {

@@ -101,7 +101,7 @@ export interface RubricLevel {
 }
 
 export interface QuizData {
-  questions: QuizQuestion[];
+  questions: LMSQuizQuestion[];
   passingScore: number;
   allowRetries: boolean;
   maxRetries?: number;
@@ -109,7 +109,7 @@ export interface QuizData {
   randomizeQuestions?: boolean;
 }
 
-export interface QuizQuestion {
+export interface LMSQuizQuestion {
   id: string;
   type: 'multiple-choice' | 'true-false' | 'short-answer' | 'essay';
   question: string;
@@ -166,7 +166,7 @@ export interface QuizAttempt {
   id: string;
   stepId: string;
   userId: string;
-  questions: QuizQuestion[];
+  questions: LMSQuizQuestion[];
   answers: Record<string, any>;
   score: number;
   passed: boolean;

@@ -10,7 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
-import type { LMSCourse, LMSModule, LMSStep } from '@/types/lms';
+import type { LMSCourse, LMSModule, LMSStep } from '@repo/types';
 
 export default function CoursePreviewPage() {
   const params = useParams();

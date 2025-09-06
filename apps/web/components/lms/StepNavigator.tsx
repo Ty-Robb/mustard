@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, CheckCircle, Circle, Lock } from 'lucide-rea
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-import { LMSCourse, LMSModule, LMSStep, UserProgress } from '@/types/lms';
+import { LMSCourse, LMSModule, LMSStep, UserProgress } from '@repo/types';
 
 interface StepNavigatorProps {
   course: LMSCourse;

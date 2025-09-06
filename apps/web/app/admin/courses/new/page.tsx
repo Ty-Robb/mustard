@@ -22,7 +22,7 @@ import {
   Image
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { LMSCourse, LMSModule, LMSStep } from '@/types/lms';
+import type { LMSCourse, LMSModule, LMSStep } from '@repo/types';
 
 export default function NewCoursePage() {
   const router = useRouter();

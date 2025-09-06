@@ -18,7 +18,7 @@ import {
   GraduationCap
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { LMSCourse, UserProgress, CourseFilters } from '@/types/lms';
+import { LMSCourse, UserProgress, CourseFilters } from '@repo/types';
 import { getLMSService } from '@/lib/services/lms.service';
 import { useAuth } from '@/hooks/useAuth';
 
