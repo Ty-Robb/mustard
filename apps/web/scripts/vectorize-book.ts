@@ -1,6 +1,6 @@
 import { bibleService } from '@/lib/services/bible.service';
 import { bibleVectorService } from '@/lib/services/bible-vector.service';
-import { BibleVector } from '@/types/bible-vectors';
+import { BibleVector } from '@repo/types';
 import { getGenesisChapterTheme, getGenesisVerseThemes, genesisBookInfo } from '@/lib/data/genesis-themes';
 import { getChapterTheme as getMatthewChapterTheme, getVerseThemes as getMatthewVerseThemes } from '@/lib/data/matthew-themes';
 import { getExodusChapterTheme, getExodusVerseThemes, exodusBookInfo } from '@/lib/data/exodus-themes';

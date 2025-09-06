@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { BibleVector, BibleVectorSearchResult } from '@/types/bible-vectors';
+import { BibleVector, BibleVectorSearchResult } from '@repo/types';
 import clientPromise from '@/lib/mongodb';
 
 export class BibleVectorService {
