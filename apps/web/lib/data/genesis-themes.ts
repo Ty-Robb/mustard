@@ -1,4 +1,4 @@
-import { MatthewChapterTheme } from '@/types/bible-vectors';
+import { MatthewChapterTheme } from '@repo/types';
 
 // Using the same interface structure as Matthew for consistency
 export const genesisChapterThemes: MatthewChapterTheme[] = [

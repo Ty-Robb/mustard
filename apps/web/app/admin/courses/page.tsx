@@ -19,7 +19,7 @@ import {
   Star
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { LMSCourse } from '@/types/lms';
+import type { LMSCourse } from '@repo/types';
 
 export default function AdminCoursesPage() {
   const router = useRouter();

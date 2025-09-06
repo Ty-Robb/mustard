@@ -9,7 +9,7 @@ import { Progress } from '@/components/ui/progress';
 import { AlertCircle, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { cn } from '@/lib/utils';
-import { QuizData, QuizQuestion, QuizAttempt } from '@/types/lms';
+import { QuizData, LMSQuizQuestion, QuizAttempt } from '@repo/types';
 
 interface QuizComponentProps {
   quizData: QuizData;
@@ -100,7 +100,7 @@ export function QuizComponent({
     setLastAttempt(null);
   };
 
-  const renderQuestion = (question: QuizQuestion) => {
+  const renderQuestion = (question: LMSQuizQuestion) => {
     switch (question.type) {
       case 'multiple-choice':
         return (
@@ -108,7 +108,7 @@ export function QuizComponent({
             value={answers[question.id] || ''}
             onValueChange={handleAnswerChange}
           >
-            {question.options?.map((option, index) => (
+            {question.options?.map((option: string, index: number) => (
               <div key={index} className="flex items-center space-x-2 mb-2">
                 <RadioGroupItem value={option} id={`${question.id}-${index}`} />
                 <Label 

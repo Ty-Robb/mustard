@@ -7,7 +7,7 @@ import {
   UserProgress, 
   StepSubmission,
   QuizAttempt 
-} from '@/types/lms';
+} from '@repo/types';
 import { useAuth } from './useAuth';
 
 interface UseLMSReturn {

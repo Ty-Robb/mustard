@@ -114,7 +114,7 @@ function generateThemeFileContent(book: BibleBookMetadata, themeData: BookThemeD
   const bookNameLower = book.name.toLowerCase().replace(/\s+/g, '-');
   const bookNameCamel = book.name.replace(/\s+/g, '');
   
-  return `import { MatthewChapterTheme } from '@/types/bible-vectors';
+  return `import { MatthewChapterTheme } from '@repo/types';
 
 // Using the same interface structure as Matthew for consistency
 export const ${bookNameLower}ChapterThemes: MatthewChapterTheme[] = [

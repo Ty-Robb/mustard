@@ -1,4 +1,4 @@
-import { LMSCourse } from '@/types/lms';
+import { LMSCourse } from '@repo/types';
 
 export const sampleCourses: LMSCourse[] = [
   {

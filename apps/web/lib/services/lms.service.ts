@@ -8,7 +8,7 @@ import {
   QuizAttempt,
   Certificate,
   CourseFilters
-} from '@/types/lms';
+} from '@repo/types';
 import { getDatabase } from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
 

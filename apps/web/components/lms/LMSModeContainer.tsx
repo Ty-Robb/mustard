@@ -10,7 +10,7 @@ import { CourseSelectorClient } from './CourseSelectorClient';
 import { StepNavigator } from './StepNavigator';
 import { QuizComponent } from './QuizComponent';
 import { useLMSBrowser } from '@/hooks/useLMSBrowser';
-import { LMSCourse, LMSStep, QuizData, QuizAttempt } from '@/types/lms';
+import { LMSCourse, LMSStep, QuizData, QuizAttempt } from '@repo/types';
 import { 
   GraduationCap, 
   BookOpen, 

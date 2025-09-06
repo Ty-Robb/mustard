@@ -1,6 +1,6 @@
 import { Collection, Db } from 'mongodb';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { BibleVector, BibleSearchResult } from '@/types/bible-vectors';
+import { BibleVector, BibleVectorSearchResult } from '@repo/types';
 import clientPromise from '@/lib/mongodb';
 
 export class BibleVectorService {
@@ -152,7 +152,7 @@ This verse is part of ${bookInfo.name}, ${bookInfo.description}.
       minScore?: number;
       includeContext?: boolean;
     } = {}
-  ): Promise<BibleSearchResult[]> {
+  ): Promise<BibleVectorSearchResult[]> {
     const { 
       limit = 10, 
       book, 
@@ -245,7 +245,7 @@ This verse is part of ${bookInfo.name}, ${bookInfo.description}.
 
     try {
       console.log('Executing vector search...');
-      const results = await collection.aggregate<BibleSearchResult>(pipeline).toArray();
+      const results = await collection.aggregate<BibleVectorSearchResult>(pipeline).toArray();
       console.log('Vector search completed. Results count:', results.length);
       
       if (results.length > 0) {
@@ -276,7 +276,7 @@ This verse is part of ${bookInfo.name}, ${bookInfo.description}.
       chapter?: number;
       translation?: string;
     } = {}
-  ): Promise<BibleSearchResult[]> {
+  ): Promise<BibleVectorSearchResult[]> {
     const { limit = 10, book, chapter, translation } = options;
     const collection = await this.ensureConnection();
 
@@ -309,7 +309,7 @@ This verse is part of ${bookInfo.name}, ${bookInfo.description}.
     reference: string,
     translation: string,
     limit: number = 5
-  ): Promise<BibleSearchResult[]> {
+  ): Promise<BibleVectorSearchResult[]> {
     const collection = await this.ensureConnection();
 
     // Get the source verse
@@ -354,7 +354,7 @@ This verse is part of ${bookInfo.name}, ${bookInfo.description}.
     ];
 
     try {
-      return await collection.aggregate<BibleSearchResult>(pipeline).toArray();
+      return await collection.aggregate<BibleVectorSearchResult>(pipeline).toArray();
     } catch (error) {
       console.warn('Similar verse search failed:', error);
       return [];

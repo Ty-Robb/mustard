@@ -1,6 +1,6 @@
 import { bibleService } from '@/lib/services/bible.service';
 import { bibleVectorService } from '@/lib/services/bible-vector.service';
-import { BibleVector } from '@/types/bible-vectors';
+import { BibleVector } from '@repo/types';
 import { bibleBooks, getBookByCode, BibleBookMetadata } from '@/lib/data/bible-books-metadata';
 import fs from 'fs';
 import path from 'path';

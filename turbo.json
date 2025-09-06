@@ -4,7 +4,22 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
+      "env": [
+        "FIREBASE_SERVICE_ACCOUNT",
+        "MONGODB_URI",
+        "BIBLE_API_KEY",
+        "GOOGLE_CLOUD_PROJECT_ID",
+        "GOOGLE_CLOUD_REGION",
+        "GOOGLE_APPLICATION_CREDENTIALS",
+        "GEMINI_API_KEY",
+        "SENTRY_DSN",
+        "STRIPE_SECRET_KEY",
+        "STRIPE_WEBHOOK_SECRET",
+        "GOOGLE_SEARCH_API_KEY",
+        "GOOGLE_SEARCH_ENGINE_ID",
+        "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"
+      ]
     },
     "dev": {
       "cache": false,

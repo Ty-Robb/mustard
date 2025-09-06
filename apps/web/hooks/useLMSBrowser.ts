@@ -5,7 +5,7 @@ import {
   UserProgress,
   QuizAttempt,
   CourseFilters
-} from '@/types/lms';
+} from '@repo/types';
 
 interface UseLMSBrowserReturn {
   // Course browsing

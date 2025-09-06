@@ -17,6 +17,7 @@
     "@repo/types": "*",
     "@repo/config": "*",
     "@repo/payments": "*",
+    "@t3-oss/env-nextjs": "^0.13.4",
     "@ai-sdk/anthropic": "^2.0.9",
     "@ai-sdk/google": "^2.0.11",
     "@ai-sdk/openai": "^2.0.23",
