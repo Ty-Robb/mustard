@@ -1,5 +1,5 @@
 {
-  "name": "@repo/app",
+  "name": "@repo/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,16 +7,16 @@
     "build": "next build --turbopack",
     "start": "next start -p 9001",
     "lint": "next lint",
-    "test:db": "node -r dotenv/config src/scripts/test-user-database.ts dotenv_config_path=.env.local",
-    "vectorize-book": "node src/scripts/run-tsx-with-env.js src/scripts/vectorize-book.ts",
-    "vectorize-all": "node src/scripts/run-tsx-with-env.js src/scripts/vectorize-all-books.ts",
-    "check-vector-stats": "node src/scripts/run-tsx-with-env.js src/scripts/check-vector-stats.ts",
-    "generate-themes": "node src/scripts/run-tsx-with-env.js src/scripts/generate-bible-themes.ts"
+    "test:db": "node -r dotenv/config scripts/test-user-database.ts dotenv_config_path=.env.local",
+    "vectorize-book": "node scripts/run-tsx-with-env.js scripts/vectorize-book.ts",
+    "vectorize-all": "node scripts/run-tsx-with-env.js scripts/vectorize-all-books.ts",
+    "check-vector-stats": "node scripts/run-tsx-with-env.js scripts/check-vector-stats.ts",
+    "generate-themes": "node scripts/run-tsx-with-env.js scripts/generate-bible-themes.ts"
   },
   "dependencies": {
-    "@repo/types": "workspace:*",
-    "@repo/config": "workspace:*",
-    "@repo/payments": "workspace:*",
+    "@repo/types": "*",
+    "@repo/config": "*",
+    "@repo/payments": "*",
     "@ai-sdk/anthropic": "^2.0.9",
     "@ai-sdk/google": "^2.0.11",
     "@ai-sdk/openai": "^2.0.23",

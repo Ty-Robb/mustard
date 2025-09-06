@@ -12,7 +12,7 @@ import { usePanel } from '@/contexts/PanelContext';
 import { useAuth } from '@/hooks/useAuth';
 import { ChatHistoryTab } from './ChatHistoryTab';
 import { HighlightsTab } from './HighlightsTab';
-import type { AIInsight } from '@/app/api/insights/route';
+import type { AIInsight } from '../../app/api/insights/route';
 import type { ChatSession as DBChatSession, ChatMessage } from '@/types/chat';
 import type { Highlight } from '@/types/highlights';
 
