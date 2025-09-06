@@ -17,7 +17,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import type { AIInsight } from "@/app/api/insights/route"
+import type { AIInsight } from "../../api/insights/route"
 import type { Highlight } from "@/types/highlights"
 import { useSearchParams } from 'next/navigation'
 import { Card, CardContent } from "@/components/ui/card"

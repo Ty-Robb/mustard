@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { X, Sparkles, BookOpen, Link, Lightbulb, Languages, Heart, Brain, Loader2, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import type { AIInsight } from '@/app/api/insights/route';
+import type { AIInsight } from '../../app/api/insights/route';
 
 interface AIInsightsModalProps {
   isOpen: boolean;
